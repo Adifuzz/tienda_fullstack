@@ -5,12 +5,13 @@ export interface User {
   idUsuario: number;
   nombreCompleto: string;
   email: string;
-  rol?: string;
+  rol?: string; // Asegúrate de que el backend envíe este campo
 }
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => Promise<void>;
+  // CAMBIO 1: La función ahora promete devolver un User
+  login: (email: string, password: string) => Promise<User>; 
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -25,17 +26,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (stored) setUser(JSON.parse(stored));
   }, []);
 
+  // CAMBIO 2: Retornar el usuario al finalizar
   const login = async (email: string, password: string) => {
-    // Llama al endpoint del UsuarioController.java
     const data = await apiFetch("/usuarios/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
     });
-    // El backend devuelve { mensaje: "...", usuario: {...} }
+
     if (data.usuario) {
       setUser(data.usuario);
       localStorage.setItem("ropaplus_user", JSON.stringify(data.usuario));
+      return data.usuario; // <--- ESTO ES LA CLAVE
     }
+    
+    throw new Error("Error de autenticación");
   };
 
   const logout = () => {
