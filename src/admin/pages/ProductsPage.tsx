@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiFetch } from "@/lib/api";
-import { formatCurrency } from "@/lib/utils"; // Tu función de formato CLP
+import { formatCurrency } from "@/lib/utils"; 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -32,7 +32,6 @@ import {
 import { Plus, Trash2, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 
-// --- Interfaces (Tipos) ---
 interface Categoria {
   idCategoria: number;
   nombre: string;
@@ -52,7 +51,7 @@ interface Producto {
 export const ProductsPage = () => {
   const queryClient = useQueryClient();
   
-  // Estados para el Modal y el Formulario
+
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -89,7 +88,7 @@ export const ProductsPage = () => {
       queryClient.invalidateQueries({ queryKey: ["admin-products"] });
       toast.success("Producto creado exitosamente");
       setIsOpen(false);
-      // Limpiar formulario
+
       setFormData({
         nombre: "",
         precio: "",
@@ -289,7 +288,7 @@ export const ProductsPage = () => {
         </Dialog>
       </div>
 
-      {/* Tabla de Resultados */}
+
       <div className="border rounded-md bg-card shadow-sm">
         <Table>
           <TableHeader>

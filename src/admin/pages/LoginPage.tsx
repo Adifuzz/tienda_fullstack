@@ -16,7 +16,7 @@ export const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   
-  // Estados del formulario
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -26,16 +26,16 @@ export const LoginPage = () => {
     setLoading(true);
 
     try {
-      // 1. Intentar loguearse y obtener datos del usuario
+
       const usuarioLogueado = await login(email, password);
       
       toast.success(`Bienvenido de nuevo, ${usuarioLogueado.nombreCompleto}`);
 
-      // 2. Redirigir según el ROL
+
       if (usuarioLogueado.rol === "ADMIN") {
-        navigate("/admin"); // Panel de administración
+        navigate("/admin"); 
       } else {
-        navigate("/");      // Tienda pública
+        navigate("/");     
       }
 
     } catch (error) {

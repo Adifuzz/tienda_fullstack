@@ -19,7 +19,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
-          {/* SECCIÓN IZQUIERDA: LOGO + MENÚ DE NAVEGACIÓN */}
+
           <div className="flex items-center gap-8">
             <Link to="/" className="text-2xl font-black tracking-tight hover:opacity-90 transition-opacity">
               ROPAPLUS
@@ -41,17 +41,17 @@ const Navbar = () => {
             </div>
           </div>
           
-          {/* SECCIÓN DERECHA: USUARIO + CARRITO */}
+
           <div className="flex items-center gap-4">
             
-            {/* Lógica de Autenticación */}
+
             {isAuthenticated && user ? (
-              // --- USUARIO LOGUEADO ---
+   
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="gap-2 font-medium px-2">
                     <User className="h-5 w-5" />
-                    {/* Solo mostramos el primer nombre para que no ocupe mucho espacio */}
+
                     <span className="hidden sm:inline">
                       Hola, {user.nombreCompleto.split(" ")[0]}
                     </span>
@@ -61,7 +61,7 @@ const Navbar = () => {
                   <DropdownMenuLabel>Mi Cuenta</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   
-                  {/* Opción exclusiva para Administradores */}
+       
                   {user.rol === 'ADMIN' && (
                     <DropdownMenuItem asChild>
                       <Link to="/admin" className="cursor-pointer font-medium">
@@ -77,7 +77,7 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              // --- USUARIO NO LOGUEADO (Invitado) ---
+
               <Button asChild variant="ghost" size="sm" className="gap-2">
                 <Link to="/auth/login">
                   <User className="h-5 w-5" />
@@ -94,7 +94,7 @@ const Navbar = () => {
               </span>
             </Button>
             
-            {/* Botón Menú Móvil */}
+
             <Button variant="ghost" size="icon" className="md:hidden">
               <Menu className="h-5 w-5" />
             </Button>

@@ -68,7 +68,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-primary-foreground/20 pt-8 text-center text-sm text-primary-foreground/60">
-          <p>© 2024 Ropaplus. Todos los derechos reservados.</p>
+          <p>© 2025 Ropaplus. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

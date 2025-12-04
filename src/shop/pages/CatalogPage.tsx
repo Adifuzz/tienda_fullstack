@@ -22,11 +22,11 @@ interface CatalogPageProps {
 
 export const CatalogPage = ({ title, description, filterFn }: CatalogPageProps) => {
   const { data: products, isLoading, error } = useQuery({
-    queryKey: ["products"], // Usamos la misma cache para todo
+    queryKey: ["products"], 
     queryFn: () => apiFetch("/productos"),
   });
 
-  // Aplicamos el filtro recibido por props
+
   const filteredProducts = products?.filter(filterFn) || [];
 
   if (isLoading) return <CatalogSkeleton />;
@@ -34,13 +34,13 @@ export const CatalogPage = ({ title, description, filterFn }: CatalogPageProps) 
 
   return (
     <div className="container mx-auto px-4 py-12">
-      {/* Encabezado de la Página */}
+  
       <div className="mb-10 text-center">
         <h1 className="text-4xl font-black tracking-tight mb-2 uppercase">{title}</h1>
         {description && <p className="text-muted-foreground text-lg">{description}</p>}
       </div>
 
-      {/* Grid de Productos */}
+
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredProducts.map((product: Producto) => (
@@ -89,7 +89,7 @@ export const CatalogPage = ({ title, description, filterFn }: CatalogPageProps) 
   );
 };
 
-// Skeleton para la carga
+
 const CatalogSkeleton = () => (
   <div className="container mx-auto py-12">
     <div className="mb-10 text-center space-y-4">
